@@ -7,19 +7,44 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private string _fruitTag;
+    [SerializeField] private Transform _playerHead;
+    [SerializeField] private float _maxDisFood;
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private GameObject _leye, _reye;
 
     private Rigidbody2D _rbody;
     private Vector2 _mousePos;
     private float angle;
     private Quaternion quaternion;
     private PlayerTail playerTail;
-
+    private bool _nearFood;
     private void Awake()
     {
         _rbody = GetComponent<Rigidbody2D>();
         playerTail = GetComponent<PlayerTail>();
     }
     private void Update()
+    {
+        Movement();
+        EyeAnimate();
+    }
+
+    private void FixedUpdate()
+    {
+        _rbody.velocity = quaternion * Vector2.right * _moveSpeed * Time.fixedDeltaTime;
+
+        _rbody.MoveRotation(quaternion.eulerAngles.z);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == _fruitTag)
+        {
+            Destroy(collision.gameObject);
+            playerTail.AddTail();
+        }
+    }
+
+    private void Movement()
     {
         _mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -39,18 +64,34 @@ public class PlayerScript : MonoBehaviour
         }*/
     }
 
-    private void FixedUpdate()
+    private void EyeAnimate()
     {
-        _rbody.velocity = quaternion * Vector2.right * _moveSpeed * Time.fixedDeltaTime;
+        Collider2D collider = Physics2D.OverlapCircle(_playerHead.position, _maxDisFood, _layerMask);
 
-        _rbody.MoveRotation(quaternion.eulerAngles.z);
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == _fruitTag)
+        if(collider != null)
         {
-            Destroy(collision.gameObject);
-            playerTail.AddTail();
+            Vector2 vector = collider.transform.position - _playerHead.position; 
+
+            float angle1 = Vector2.Angle(vector, Vector2.right);
+
+            if (vector.y < 0)
+                angle1 = -angle1;
+
+            _leye.transform.rotation = Quaternion.Euler(0, 0, angle1);
+            _reye.transform.rotation = Quaternion.Euler(0, 0, angle1);
+
+        }
+        else
+        {
+            _leye.transform.rotation = Quaternion.Euler(0, 0, _playerHead.eulerAngles.z);
+            _reye.transform.rotation = Quaternion.Euler(0, 0, _playerHead.eulerAngles.z);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        //Gizmos.DrawWireSphere(_playerHead.position, _maxDisFood);
+        Gizmos.color = Color.red;
+    }
+
 }
