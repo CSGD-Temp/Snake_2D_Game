@@ -7,11 +7,15 @@ public class PlayerScript : MonoBehaviour
     [Header("Player Movement")]
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _rotateSpeed;
-    [SerializeField] private string _fruitTag;
-    [SerializeField] private Transform _playerHead;
     [SerializeField] private float _maxDisFood;
-    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private float _TongueAnimationDelay;
+    [SerializeField] private string _fruitTag;
+    [SerializeField] private string _obstaclesTag;
+    [SerializeField] private Transform _playerHead;
     [SerializeField] private GameObject _leye, _reye;
+    [SerializeField] private GameObject _deadAnimation;
+    [SerializeField] private GameObject _TongueAnimation;
+    [SerializeField] private LayerMask _layerMask;
 
     [Header("Scripts")]
     [SerializeField] private friutspwner _friutspwner;
@@ -21,11 +25,15 @@ public class PlayerScript : MonoBehaviour
     private float angle;
     private Quaternion quaternion;
     private PlayerTail playerTail;
-    private bool _nearFood;
+    private bool _isPlayerDead;
     private void Awake()
     {
         _rbody = GetComponent<Rigidbody2D>();
         playerTail = GetComponent<PlayerTail>();
+    }
+    private void Start()
+    {
+        StartCoroutine(PlayTongueAnimation());
     }
     private void Update()
     {
@@ -35,9 +43,16 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rbody.velocity = quaternion * Vector2.right * _moveSpeed * Time.fixedDeltaTime;
+        if (!_isPlayerDead)
+        {
+            _rbody.velocity = quaternion * Vector2.right * _moveSpeed * Time.fixedDeltaTime;
 
-        _rbody.MoveRotation(quaternion.eulerAngles.z);
+            _rbody.MoveRotation(quaternion.eulerAngles.z);
+        }
+        else
+        {
+            _rbody.velocity = Vector2.zero;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -46,6 +61,11 @@ public class PlayerScript : MonoBehaviour
             Destroy(collision.gameObject);//destroy friut
             _friutspwner.friutSpawner();//spawn new friut
             playerTail.AddTail();
+        }
+        else if(collision.gameObject.tag == _obstaclesTag)
+        {
+            _isPlayerDead = true;
+            _deadAnimation.SetActive(true);
         }
     }
 
@@ -93,10 +113,23 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private IEnumerator PlayTongueAnimation()
+    {
+        float delay1 = Random.Range(_TongueAnimationDelay, _TongueAnimationDelay + 3);
+        yield return new WaitForSeconds(delay1);
+
+        _TongueAnimation.SetActive(true);
+
+        yield return new WaitForSeconds(1);
+
+        _TongueAnimation.SetActive(false);
+
+        StartCoroutine(PlayTongueAnimation());
+    }
+
     private void OnDrawGizmos()
     {
         //Gizmos.DrawWireSphere(_playerHead.position, _maxDisFood);
-        Gizmos.color = Color.red;
     }
 
 }
