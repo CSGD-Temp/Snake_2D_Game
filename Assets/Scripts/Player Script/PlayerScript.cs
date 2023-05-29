@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    [Header("Player Movement")]
     [SerializeField] private float _moveSpeed = 10f;
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private string _fruitTag;
@@ -11,6 +12,9 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float _maxDisFood;
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private GameObject _leye, _reye;
+
+    [Header("Scripts")]
+    [SerializeField] private friutspwner _friutspwner;
 
     private Rigidbody2D _rbody;
     private Vector2 _mousePos;
@@ -39,7 +43,8 @@ public class PlayerScript : MonoBehaviour
     {
         if (collision.gameObject.tag == _fruitTag)
         {
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject);//destroy friut
+            _friutspwner.friutSpawner();//spawn new friut
             playerTail.AddTail();
         }
     }
