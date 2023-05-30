@@ -2797,6 +2797,11 @@ PrefabInstance:
       propertyPath: _friutspwner
       value: 
       objectReference: {fileID: 202263640}
+    - target: {fileID: 421568017400732567, guid: 26c8e94ca3fd3494fa27152d8022b6df,
+        type: 3}
+      propertyPath: _rotateSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1593202565730051166, guid: 26c8e94ca3fd3494fa27152d8022b6df,
         type: 3}
       propertyPath: m_RootOrder
