@@ -7,6 +7,7 @@ using UnityEngine;
 public class gameUI : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public GameObject gameWin;
     public GameObject gameOver;
     private bool _isPaused = false;
     public PlayerScript playerScript;
@@ -15,6 +16,9 @@ public class gameUI : MonoBehaviour
         playerScript = FindObjectOfType<PlayerScript>();
     }
     private void Update() {
+        if(playerScript.isPlayerWin){
+            StartCoroutine(GameWin(0.8f));
+        }
         if(!playerScript.isPlayerDead){
 
             if(Input.GetKeyDown(KeyCode.Escape)){
@@ -49,7 +53,19 @@ public class gameUI : MonoBehaviour
         Time.timeScale = 1;
         playerScript.isPlayerDead = false;
     }
+    public void NextLevel(){
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex + 1);
+        Time.timeScale = 1f;
+        _isPaused = false;
+    }
 
+    private IEnumerator GameWin(float delay){
+        yield return new WaitForSeconds(delay);
+        gameWin.SetActive(true);
+        Time.timeScale = 0f;
+        _isPaused = true;
+    }
     private IEnumerator GameOver(float delay){
 
         yield return new WaitForSeconds(delay);
