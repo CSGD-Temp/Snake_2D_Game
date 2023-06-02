@@ -512,9 +512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 200
-  _rotateSpeed: 5
+  _rotateSpeed: 15
   _maxDisFood: 3
   _TongueAnimationDelay: 5
+  _maxFoodCanEat: 5
   _fruitTag: Fruit
   _obstaclesTag: Obstacle
   _playerHead: {fileID: 7789227004470933766}
@@ -526,6 +527,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _friutspwner: {fileID: 0}
+  isPlayerDead: 0
+  isPlayerWin: 0
 --- !u!114 &7789227006325915718
 MonoBehaviour:
   m_ObjectHideFlags: 0

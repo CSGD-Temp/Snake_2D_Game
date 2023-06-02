@@ -9,6 +9,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _maxDisFood;
     [SerializeField] private float _TongueAnimationDelay;
+    [SerializeField] private int _maxFoodCanEat;
     [SerializeField] private string _fruitTag;
     [SerializeField] private string _obstaclesTag;
     [SerializeField] private Transform _playerHead;
@@ -23,15 +24,19 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D _rbody;
     private Vector2 _mousePos;
     private float angle;
+    private int eatFoodCount;
     private Quaternion quaternion;
     private PlayerTail playerTail;
+    private PostProcessingScript processingScript;
 
     public bool isPlayerDead;
+    public bool isPlayerWin;
 
     private void Awake()
     {
         _rbody = GetComponent<Rigidbody2D>();
         playerTail = GetComponent<PlayerTail>();
+        processingScript = FindObjectOfType<PostProcessingScript>();
     }
     private void Start()
     {
@@ -45,15 +50,15 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!isPlayerDead)
+        if (isPlayerDead || isPlayerWin)
+        {
+            _rbody.velocity = Vector2.zero;
+        }
+        else
         {
             _rbody.velocity = quaternion * Vector2.right * _moveSpeed * Time.fixedDeltaTime;
 
             _rbody.MoveRotation(quaternion.eulerAngles.z);
-        }
-        else
-        {
-            _rbody.velocity = Vector2.zero;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -61,7 +66,9 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == _fruitTag)
         {
             Destroy(collision.gameObject);//destroy friut
-            _friutspwner.friutSpawner();//spawn new friut
+            PlayerWin();
+            if (!isPlayerWin)
+                _friutspwner.friutSpawner();//spawn new friut
             playerTail.AddTail();
         }
         else if(collision.gameObject.tag == _obstaclesTag)
@@ -120,13 +127,24 @@ public class PlayerScript : MonoBehaviour
         float delay1 = Random.Range(_TongueAnimationDelay, _TongueAnimationDelay + 3);
         yield return new WaitForSeconds(delay1);
 
-        _TongueAnimation.SetActive(true);
+        if(!isPlayerDead)
+            _TongueAnimation.SetActive(true);
 
         yield return new WaitForSeconds(1);
 
         _TongueAnimation.SetActive(false);
 
         StartCoroutine(PlayTongueAnimation());
+    }
+
+    private void PlayerWin()
+    {
+        eatFoodCount++;
+        if(eatFoodCount >= _maxFoodCanEat && !isPlayerWin)
+        {
+            processingScript.UpdateBloom();
+            isPlayerWin = true;
+        }
     }
 
     private void OnDrawGizmos()
