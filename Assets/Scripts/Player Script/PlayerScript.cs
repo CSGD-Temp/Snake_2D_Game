@@ -25,7 +25,9 @@ public class PlayerScript : MonoBehaviour
     private float angle;
     private Quaternion quaternion;
     private PlayerTail playerTail;
-    private bool _isPlayerDead;
+
+    public bool isPlayerDead;
+
     private void Awake()
     {
         _rbody = GetComponent<Rigidbody2D>();
@@ -43,7 +45,7 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!_isPlayerDead)
+        if (!isPlayerDead)
         {
             _rbody.velocity = quaternion * Vector2.right * _moveSpeed * Time.fixedDeltaTime;
 
@@ -64,7 +66,7 @@ public class PlayerScript : MonoBehaviour
         }
         else if(collision.gameObject.tag == _obstaclesTag)
         {
-            _isPlayerDead = true;
+            isPlayerDead = true;
             _deadAnimation.SetActive(true);
         }
     }
@@ -95,7 +97,7 @@ public class PlayerScript : MonoBehaviour
 
         if(collider != null)
         {
-            Vector2 vector = collider.transform.position - _playerHead.position; 
+            Vector2 vector = collider.transform.position - _playerHead.position;
 
             float angle1 = Vector2.Angle(vector, Vector2.right);
 
