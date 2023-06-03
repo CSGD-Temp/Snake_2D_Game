@@ -2944,6 +2944,7 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3088,6 +3089,21 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef348d3fb9918da4db72a9d0716723dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1286854801988459099}
+  minBounds: {x: -13.5, y: -9}
+  maxBounds: {x: 13.5, y: 9}
 --- !u!1 &1174632245
 GameObject:
   m_ObjectHideFlags: 0
@@ -3125,6 +3141,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 858780764, guid: f695c6eb0063f404ebb8c1cd7bd69f3d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1310826830510726321, guid: f695c6eb0063f404ebb8c1cd7bd69f3d,
         type: 3}
       propertyPath: m_RootOrder
@@ -3266,3 +3286,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26c8e94ca3fd3494fa27152d8022b6df, type: 3}
+--- !u!4 &1286854801988459099 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1593202565730051166, guid: 26c8e94ca3fd3494fa27152d8022b6df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1286854801988459098}
+  m_PrefabAsset: {fileID: 0}
