@@ -11,7 +11,11 @@ public class gameUI : MonoBehaviour
     public GameObject gameOver;
     private bool _isPaused = false;
     public PlayerScript playerScript;
+    [SerializeField] private Text score_text;
+    [SerializeField] private Slider slider;
 
+    public int Score_per_food;
+    int Score;
     private void Start() {
         playerScript = FindObjectOfType<PlayerScript>();
     }
@@ -34,6 +38,7 @@ public class gameUI : MonoBehaviour
         else{
              StartCoroutine(GameOver(0.8f));
         }
+        _Score();
     }//Update
     public void Resume(){
         pauseMenu.SetActive(false);
@@ -58,11 +63,14 @@ public class gameUI : MonoBehaviour
         SceneManager.LoadScene(currentSceneIndex + 1);
         Time.timeScale = 1f;
         _isPaused = false;
+        
     }
 
     private IEnumerator GameWin(float delay){
         yield return new WaitForSeconds(delay);
         gameWin.SetActive(true);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("LevelReched", currentSceneIndex + 1);
         Time.timeScale = 0f;
         _isPaused = true;
     }
@@ -72,5 +80,13 @@ public class gameUI : MonoBehaviour
         gameOver.SetActive(true);
         Time.timeScale = 0f;
         _isPaused = true;
+    }
+    private void _Score()
+    {
+        Score = playerScript.eatFoodCount * Score_per_food;
+        score_text.text = "Score " + Score;
+
+        slider.maxValue = playerScript._maxFoodCanEat;
+        slider.value = playerScript.eatFoodCount;
     }
 }//Class

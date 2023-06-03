@@ -9,7 +9,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _maxDisFood;
     [SerializeField] private float _TongueAnimationDelay;
-    [SerializeField] private int _maxFoodCanEat;
+    public int _maxFoodCanEat;
     [SerializeField] private string _fruitTag;
     [SerializeField] private string _obstaclesTag;
     [SerializeField] private Transform _playerHead;
@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D _rbody;
     private Vector2 _mousePos;
     private float angle;
-    private int eatFoodCount;
+    public int eatFoodCount;
     private Quaternion quaternion;
     private PlayerTail playerTail;
     private PostProcessingScript processingScript;
