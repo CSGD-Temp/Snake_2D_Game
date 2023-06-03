@@ -10,6 +10,13 @@ public class MENU_UI : MonoBehaviour
     [SerializeField] private GameObject _Setings_Panal;
     [SerializeField] private GameObject _Credits_Panal;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+           {
+                back();
+           }
+    }//Update
 
     public void play()
     {
