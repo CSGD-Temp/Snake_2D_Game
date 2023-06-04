@@ -3011,6 +3011,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1762362765, guid: 85e8ca9ebbedbfb438d57d0e3d0efccf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -20.899963
+      objectReference: {fileID: 0}
     - target: {fileID: 1310826830510726321, guid: 85e8ca9ebbedbfb438d57d0e3d0efccf,
         type: 3}
       propertyPath: m_RootOrder
@@ -3071,6 +3075,16 @@ PrefabInstance:
       propertyPath: playerScript
       value: 
       objectReference: {fileID: 465113927}
+    - target: {fileID: 7742725928679912850, guid: 85e8ca9ebbedbfb438d57d0e3d0efccf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7742725928722786159, guid: 85e8ca9ebbedbfb438d57d0e3d0efccf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8671318407710658006, guid: 85e8ca9ebbedbfb438d57d0e3d0efccf,
         type: 3}
       propertyPath: m_Name
