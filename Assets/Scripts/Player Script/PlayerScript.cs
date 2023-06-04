@@ -17,6 +17,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject _deadAnimation;
     [SerializeField] private GameObject _TongueAnimation;
     [SerializeField] private LayerMask _layerMask;
+    private AudioSource _audioSource; //audio source for friut
+    [SerializeField] private AudioClip _audioClip0;
+    [SerializeField] private AudioClip _audioClip1;
+    [SerializeField] private AudioClip _audioClip2;
+
 
     [Header("Scripts")]
     [SerializeField] private friutspwner _friutspwner;
@@ -37,10 +42,13 @@ public class PlayerScript : MonoBehaviour
         _rbody = GetComponent<Rigidbody2D>();
         playerTail = GetComponent<PlayerTail>();
         processingScript = FindObjectOfType<PostProcessingScript>();
+        _audioSource = GetComponent<AudioSource>();
     }
     private void Start()
     {
         StartCoroutine(PlayTongueAnimation());
+        GameObject friut = GameObject.FindGameObjectWithTag("Fruit");//get friut object
+        //_audioSource = friut.AddComponent<AudioSource>();//get audio source from friut
     }
     private void Update()
     {
@@ -66,13 +74,17 @@ public class PlayerScript : MonoBehaviour
         if (collision.gameObject.tag == _fruitTag)
         {
             Destroy(collision.gameObject);//destroy friut
+            _audioSource.clip = _audioClip0;
+            _audioSource.Play();//play audio
             PlayerWin();
             if (!isPlayerWin)
                 _friutspwner.friutSpawner();//spawn new friut
             playerTail.AddTail();
         }
-        else if(collision.gameObject.tag == _obstaclesTag)
+        else if (collision.gameObject.tag == _obstaclesTag)
         {
+            _audioSource.clip = _audioClip2;
+            _audioSource.Play();//play audio
             isPlayerDead = true;
             _deadAnimation.SetActive(true);
         }
@@ -102,7 +114,7 @@ public class PlayerScript : MonoBehaviour
     {
         Collider2D collider = Physics2D.OverlapCircle(_playerHead.position, _maxDisFood, _layerMask);
 
-        if(collider != null)
+        if (collider != null)
         {
             Vector2 vector = collider.transform.position - _playerHead.position;
 
@@ -127,8 +139,12 @@ public class PlayerScript : MonoBehaviour
         float delay1 = Random.Range(_TongueAnimationDelay, _TongueAnimationDelay + 3);
         yield return new WaitForSeconds(delay1);
 
-        if(!isPlayerDead)
+        if (!isPlayerDead)
+        {
+            _audioSource.clip = _audioClip1;
+            _audioSource.Play();
             _TongueAnimation.SetActive(true);
+        }
 
         yield return new WaitForSeconds(1);
 
@@ -140,7 +156,7 @@ public class PlayerScript : MonoBehaviour
     private void PlayerWin()
     {
         eatFoodCount++;
-        if(eatFoodCount >= _maxFoodCanEat && !isPlayerWin)
+        if (eatFoodCount >= _maxFoodCanEat && !isPlayerWin)
         {
             processingScript.UpdateBloom();
             isPlayerWin = true;
