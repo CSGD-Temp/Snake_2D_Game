@@ -3830,8 +3830,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1286854801988459099}
-  minBounds: {x: -13.5, y: -9}
-  maxBounds: {x: 13.5, y: 9}
+  minBounds: {x: -11.5, y: -9}
+  maxBounds: {x: 11.5, y: 9}
 --- !u!1 &1174632245
 GameObject:
   m_ObjectHideFlags: 0
