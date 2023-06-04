@@ -13,11 +13,13 @@ public class gameUI : MonoBehaviour
     public PlayerScript playerScript;
     [SerializeField] private Text score_text;
     [SerializeField] private Slider slider;
+    [SerializeField] private GameObject _slider;
 
     public int Score_per_food;
     int Score;
     private void Start() {
         playerScript = FindObjectOfType<PlayerScript>();
+        _slider.SetActive(true);
     }
     private void Update() {
         if(playerScript.isPlayerWin){
@@ -71,6 +73,7 @@ public class gameUI : MonoBehaviour
         gameWin.SetActive(true);
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("LevelReched", currentSceneIndex + 1);
+        _slider.SetActive(false);
         Time.timeScale = 0f;
         _isPaused = true;
     }
@@ -78,6 +81,7 @@ public class gameUI : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
         gameOver.SetActive(true);
+        _slider.SetActive(false);
         Time.timeScale = 0f;
         _isPaused = true;
     }
