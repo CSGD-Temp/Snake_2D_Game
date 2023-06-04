@@ -494,7 +494,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -7686631524645944044, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: -3795707807602768110, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -664,7 +664,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -4309620618804800533, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: 2725852874502631267, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -869,7 +869,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -4327149033870877034, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: 3259004251166806742, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -1000,7 +1000,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -4327149033870877034, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: 3259004251166806742, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -1131,7 +1131,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 5896353503714400814, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: 2968624415836953969, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -1262,7 +1262,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -4327149033870877034, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: 3259004251166806742, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -1393,7 +1393,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: -7686631524645944044, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: -3795707807602768110, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
@@ -1865,7 +1865,7 @@ MonoBehaviour:
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 3300879847665187767, guid: 62e44c13f339f074fa4b274edeb8b1b1,
+    m_PressedSprite: {fileID: -4500284759494913336, guid: 62e44c13f339f074fa4b274edeb8b1b1,
       type: 3}
     m_SelectedSprite: {fileID: 0}
     m_DisabledSprite: {fileID: 0}
